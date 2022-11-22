@@ -8,7 +8,7 @@ mv user-main user
 cd /home/roboshop/user
 npm install
 
-sed -i -e 's/REDIS_ENDPOINT/redis.agileworld.online/' -e 's/MONGO_ENDPOINT/mongo.agileworld.online/'
+sed -i -e 's/REDIS_ENDPOINT/redis.agileworld.online/' -e 's/MONGO_ENDPOINT/mongo.agileworld.online/' /systemd.service
 
 
 mv /home/roboshop/user/systemd.service /etc/systemd/system/user.service
