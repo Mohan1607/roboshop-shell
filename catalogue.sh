@@ -8,10 +8,10 @@ mv catalogue-main catalogue
 cd /home/roboshop/catalogue
 npm install
 
-#sed -i -e 's/MONGODB_'
+sed -i -e 's/MONGO_DNSNAME/mongodb.agileworld.online/' systemd.conf
 
 
-# mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
-# systemctl daemon-reload
-# systemctl start catalogue
-# systemctl enable catalogue
+mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
+systemctl daemon-reload
+systemctl start catalogue
+systemctl enable catalogue
