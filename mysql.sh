@@ -2,9 +2,9 @@ curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/robo
 dnf module disable mysql -y
 yum install mysql-community-server -y
 systemctl enable mysqld
-systemctl start mysqld
-DEFAULT_PASSWORD=$(grep 'A temporary passwd' /var/log/mysqld.log | awk '{print $NF}')
+systemctl restart mysqld
+DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
 #echo ${DEFAULT_PASSWORD}
 echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Roboshop@1';" > /tmp/root-pass-sql
 #ALTER USER 'root'@'localhost' IDENTIFIED BY 'Roboshop@1';
-#cat /tmp/root-pass-sql | mysql --connect-expired-password -uroot -p"${DEFAULT_PASSWORD}"
+cat /tmp/root-pass-sql | mysql --connect-expired-password -uroot -p"${DEFAULT_PASSWORD}"
