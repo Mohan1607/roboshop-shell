@@ -39,13 +39,14 @@ if [ $? -eq 0 ] ; then
     echo -e"\e[31mFAILURE\e[0m"
      exit
 fi
+ROBOSHOP_MYSQL_PASSWORD=$1
 echo show databases | mysql -uroot -p${ROBOSHOP_MYSQL_PASSWORD}
 echo $?
 if [ $? -ne 0 ]
 then
 DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
 #echo ${DEFAULT_PASSWORD}
-echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1';" > /tmp/root-pass-sql
+echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '${ROBOSHOP_MYSQL_PASSWORD}';" > /tmp/root-pass-sql
 #ALTER USER 'root'@'localhost' IDENTIFIED BY 'Roboshop@1';
 cat /tmp/root-pass-sql | mysql --connect-expired-password -uroot -p"${DEFAULT_PASSWORD}"
 fi
