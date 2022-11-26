@@ -39,7 +39,7 @@ if [ $? -eq 0 ] ; then
     echo -e"\e[31mFAILURE\e[0m"
      exit
 fi
-echo show databases | mysql -uroot -pRoboshop@1
+echo show databases | mysql -uroot -p${ROBOSHOP_MYSQL_PASSWORD}
 if [ $? -ne 0 ]
 then
 DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}')
