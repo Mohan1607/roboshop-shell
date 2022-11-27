@@ -1,19 +1,8 @@
+source common.sh
 if [ -z "$1" ]; then
   echo input argument password needed
   exit
 fi
-STAT(){
-  if [ $? -eq 0 ] ; then
-    echo -e "\e[32mSUCCESS\e[0m"
-    else
-      echo -e"\e[31mFAILURE\e[0m"
-      exit
-  fi
-}
-PRINT(){
-  echo -e "\e[35m$1\E[0m"
-}
-
 PRINT "DOWNLOADING MYSQL REPO"
 curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo
 STAT $?
