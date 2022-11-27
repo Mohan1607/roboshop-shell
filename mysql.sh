@@ -39,7 +39,7 @@ if [ $? -eq 0 ] ; then
     echo -e"\e[31mFAILURE\e[0m"
      exit
 fi
-#ROBOSHOP_MYSQL_PASSWORD=$1
+ROBOSHOP_MYSQL_PASSWORD=$1
 echo show databases | mysql -uroot -p${ROBOSHOP_MYSQL_PASSWORD}
 echo $?
 if [ $? -ne 0 ]
