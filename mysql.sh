@@ -1,5 +1,6 @@
 if [ -z "$1" ]; then
   echo input argument password needed
+  exit
 fi
 
 echo -e "\e[35mDOWNLOADING MYSQL REPO\E[0m"
