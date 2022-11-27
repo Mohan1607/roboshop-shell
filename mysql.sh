@@ -1,3 +1,7 @@
+if [ -z "$1" ]; then
+  echo input argument password needed
+fi
+
 echo -e "\e[35mDOWNLOADING MYSQL REPO\E[0m"
 curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo
 if [ $? -eq 0 ] ; then
