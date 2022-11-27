@@ -2,48 +2,35 @@ if [ -z "$1" ]; then
   echo input argument password needed
   exit
 fi
+STAT(){
+  if [ $? -eq 0 ] ; then
+    echo -e "\e[32mSUCCESS\e[0m"
+    else
+      echo -e"\e[31mFAILURE\e[0m"
+      exit
+  fi
+}
+PRINT(){
+  echo -e "\e[35m$1\E[0m"
+}
 
-echo -e "\e[35mDOWNLOADING MYSQL REPO\E[0m"
+PRINT "DOWNLOADING MYSQL REPO"
 curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo
-if [ $? -eq 0 ] ; then
-  echo -e "\e[32mSUCCESS\e[0m"
-  else
-    echo -e"\e[31mFAILURE\e[0m"
-    exit
-fi
+STAT $?
 
-echo -e "\e[35mDISABLE MYSQL 8\e[0m"
+PRINT "DISABLE MYSQL 8"
 dnf module disable mysql -y
-if [ $? -eq 0 ] ; then
-  echo -e "\e[32mSUCCESS\e[0m"
-  else
-    echo -e"\e[31mFAILURE\e[0m"
-    exit
-fi
-echo -e "\e[35mINSTALL MYSQL SERVICE\e[0m"
+STAT $?
+PRINT "INSTALL MYSQL SERVICE"
 yum install mysql-community-server -y
-if [ $? -eq 0 ] ; then
-  echo -e "\e[32mSUCCESS\e[0m"
-  else
-    echo -e"\e[31mFAILURE\e[0m"
-    exit
-fi
-echo -e "\e[35mENABLE MYSQL SERVICE\e[0m"
+STAT $?
+PRINT "ENABLE MYSQL SERVICE"
 systemctl enable mysqld
-if [ $? -eq 0 ] ; then
-  echo -e "\e[32mSUCCESS\e[0m"
-  else
-    echo -e"\e[31mFAILURE\e[0m"
-    exit
-fi
+STAT $?
+PRINT "START MYSQL SERVICE"
 systemctl restart mysqld
-echo -e "\e[35mSTART MYSQL SERVICE\e[0m"
-if [ $? -eq 0 ] ; then
-  echo -e "\e[32mSUCCESS\e[0m"
-  else
-    echo -e"\e[31mFAILURE\e[0m"
-     exit
-fi
+$?
+PRINT "Change Mysql Default Password"
 ROBOSHOP_MYSQL_PASSWORD=$1
 echo show databases | mysql -uroot -p${ROBOSHOP_MYSQL_PASSWORD}
 echo $?
