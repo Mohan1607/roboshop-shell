@@ -14,15 +14,23 @@ LOG=/tmp/$COMPONENT.log
 #rm -f $LOG
 DOWNLOAD_APP_CODE(){
 PRINT "DOWNLOAD APPLICATION CODE"
-curl -s -L -o /tmp/cart.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>> $LOG
+curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>> $LOG
 STAT $?
-cd /home/roboshop
-rm -rf ${COMPONENT}
+PRINT "REMOVE PREVIOS VERSION OF ${COMPONENT}"
+cd ${APP_LOC}
+rm -rf ${CONTENT} &>> $LOG
 PRINT "EXTRACT THE APP CONTENT"
 unzip -o /tmp/${COMPONENT}.zip &>> $LOG
 STAT $?
-mv ${COMPONENT}-main ${COMPONENT}
-cd ${COMPONENT}
+}
+SYSTEMD()
+{
+PRINT "START ${COMPONENT} SERVICE"
+systemctl restart nginx &>> $LOG
+STAT $?
+PRINT "ENABLE ${COMPONENT} SERVICE"
+systemctl enable nginx $>> $LOG
+STAT $?
 }
 NODEJS()
 {
