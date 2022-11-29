@@ -11,7 +11,7 @@ PRINT(){
   echo -e "\e[35m$1\e[0m"
 }
 LOG=/tmp/$COMPONENT.log
-#rm -f $LOG
+rm -f $LOG
 DOWNLOAD_APP_CODE(){
 PRINT "DOWNLOAD APPLICATION CODE"
 curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>> $LOG
