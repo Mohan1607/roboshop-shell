@@ -1,5 +1,5 @@
-source common.sh
 COMPONENT=cart
+source common.sh
 PRINT "DOWNLOAD NODEJS "
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>> $LOG
 STAT $?
