@@ -11,12 +11,13 @@ STAT $?
 PRINT "CHANGE THE LISTENIP OF MONGO CONF FILE"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf &>> $LOG
 STAT $?
-PRINT "ENABLE MONGODB SERVICE "
-systemctl enable mongod &>> $LOG
-STAT $?
-PRINT "START MONGODB SERVICE"
-systemctl restart mongod &>> $LOG
-STAT $?
+SYSTEMD
+#PRINT "ENABLE MONGODB SERVICE "
+#systemctl enable mongod &>> $LOG
+#STAT $?
+#PRINT "START MONGODB SERVICE"
+#systemctl restart mongod &>> $LOG
+#STAT $?
 #curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip"
 #cd /tmp
 #unzip -o mongodb.zip
