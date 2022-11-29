@@ -1,6 +1,6 @@
 COMPONENT=redis
 source common.sh
-PRINT "INSTALL REDIS"
+PRINT "DOWNLOAD REDIS"
 dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>> $LOG
 STAT $?
 PRINT "ENABLE REDIS 6.2"
