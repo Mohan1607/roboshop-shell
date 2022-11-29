@@ -27,10 +27,10 @@ STAT $?
 SYSTEMD()
 {
 PRINT "START ${COMPONENT} SERVICE"
-systemctl restart nginx &>> $LOG
+systemctl restart ${COMPONENT} &>> $LOG
 STAT $?
 PRINT "ENABLE ${COMPONENT} SERVICE"
-systemctl enable nginx &>> $LOG
+systemctl enable ${COMPONENT} &>> $LOG
 STAT $?
 }
 NODEJS()
