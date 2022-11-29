@@ -11,7 +11,9 @@ STAT $?
 #unzip /tmp/frontend.zip
 DOWNLOAD_APP_CODE
 mv frontend-main/static/* .
-mv frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf
-STSTEMD
+PRINT "MOVE THE CONF FILE"
+mv frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf &>> $LOG
+STAT $?
+SYSTEMD
 #systemctl restart nginx
 #systemctl enable nginx
