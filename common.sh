@@ -78,7 +78,7 @@ NODEJS()
   PRINT "INSTALL DEPENDENCIES"
   npm install &>> $LOG
   STAT $?
-  SYSTEMD_CONFIG
+  #SYSTEMD_CONFIG
   PRINT "CHANGE ENDPOINT LISTENIP"
 
   #sed -i -e 's/REDIS_ENDPOINT/redis.agileworld.online/' -e 's/CATALOGUE_ENDPOINT/catalogue.agileworld.online/' -e 's/MONGO_ENDPOINT/mongo.agileworld.online/' -e 's/MONGO_DNSNAME/mongo.agileworld.online/'  systemd.service &>> $LOG
