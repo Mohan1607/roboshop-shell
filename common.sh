@@ -8,7 +8,7 @@ STAT(){
   fi
 }
 PRINT(){
-  echo -e "\e[35m$1\E[0m"
+  echo -e "\e[35m$1\e[0m"
 }
 LOG=/tmp/$COMPONENT.log
 #rm -f $LOG
