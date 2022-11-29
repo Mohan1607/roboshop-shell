@@ -3,7 +3,7 @@ STAT(){
     echo -e "\e[32mSUCCESS\e[0m"
     else
       echo "check errors in $LOG file"
-      echo -e"\e[31mFAILURE\e[0m"
+      echo -e "\e[31mFAILURE\e[0m"
       exit
   fi
 }
