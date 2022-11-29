@@ -63,6 +63,7 @@ NODEJS()
   useradd roboshop  &>> $LOG
   fi
   STAT $?
+  PRINT "DOWNLOAD APP CONTENT"
   curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>> $LOG
   STAT $?
   PRINT "REMOVE THE PREVIOUS CONTENT OF ${COMPONENT}"
