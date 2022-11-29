@@ -2,7 +2,7 @@ STAT(){
   if [ $? -eq 0 ] ; then
     echo -e "\e[32mSUCCESS\e[0m"
     else
-      echo "check errors in $LOG file"
+      echo "check errors in ${LOG} file"
       echo -e "\e[31mFAILURE\e[0m"
       exit
   fi
@@ -10,6 +10,6 @@ STAT(){
 PRINT(){
   echo -e "\e[35m$1\E[0m"
 }
-LOG=/tmp/${COMPONENT}.log
+LOG=/tmp/$COMPONENT.log
 #rm -f $LOG
 
