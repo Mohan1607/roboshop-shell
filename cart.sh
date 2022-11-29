@@ -7,7 +7,10 @@ PRINT "INSTALL NODEJS"
 yum install nodejs -y &>> $LOG
 STAT $?
 PRINT "ADD APPLICATION USER"
+id roboshop &>> $LOG
+if [ $? -ne 0 ]; then
 useradd roboshop  &>> $LOG
+fi
 STAT $?
 PRINT "DOWNLOAD APPLICATION CODE"
 curl -s -L -o /tmp/cart.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>> $LOG
