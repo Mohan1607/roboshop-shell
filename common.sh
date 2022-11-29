@@ -9,3 +9,7 @@ STAT(){
 PRINT(){
   echo -e "\e[35m$1\E[0m"
 }
+
+LOG=/tmp/${COMPONENT}.log
+rm -f $LOG
+
