@@ -47,17 +47,17 @@ NODEJS()
   useradd roboshop  &>> $LOG
   fi
   STAT $?
-  #PRINT "DOWNLOAD ${COMPONENT} APPLICATION CODE"
-  #curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>> $LOG
-  #STAT $?
-  #PRINT "REMOVE THE PREVIOUS CONTENT OF ${COMPONENT}"
-  #cd /home/roboshop
-  #rm -rf ${COMPONENT} &>> $LOG
-  #STAT $?
-  #PRINT "EXTRACT THE APP CONTENT"
-  #unzip -o /tmp/${COMPONENT}.zip &>> $LOG
-  #STAT $?
-  DOWNLOAD_APP_CODE
+  PRINT "DOWNLOAD ${COMPONENT} APPLICATION CODE"
+  curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>> $LOG
+  STAT $?
+  PRINT "REMOVE THE PREVIOUS CONTENT OF ${COMPONENT}"
+  cd /home/roboshop
+  rm -rf ${COMPONENT} &>> $LOG
+  STAT $?
+  PRINT "EXTRACT THE APP CONTENT"
+  unzip -o /tmp/${COMPONENT}.zip &>> $LOG
+  STAT $?
+  #DOWNLOAD_APP_CODE
   mv ${COMPONENT}-main ${COMPONENT}
   cd ${COMPONENT}
   PRINT "INSTALL DEPENDENCIES"
