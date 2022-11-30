@@ -64,6 +64,9 @@ NODEJS()
   PRINT "INSTALL NODEJS"
   yum install nodejs -y &>> $LOG
   STAT $?
+  APP_LOC=/home/roboshop
+  CONTENT=${COMPONENT}
+
   #PRINT "ADD APPLICATION USER"
   #id roboshop &>> $LOG
   #if [ $? -ne 0 ]; then
