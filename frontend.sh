@@ -14,6 +14,9 @@ mv frontend-main/static/* .
 PRINT "MOVE THE CONF FILE"
 mv frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf &>> $LOG
 STAT $?
-SYSTEMD
-#systemctl restart nginx
-#systemctl enable nginx
+PRINT "START NGINX SERVICE"
+systemctl restart nginx &>> $LOG
+STAT $?
+PRINT "ENABLE NGINX SERVICE"
+systemctl enable nginx &>> $LOG
+STAT $?

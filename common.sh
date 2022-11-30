@@ -13,11 +13,12 @@ PRINT(){
 LOG=/tmp/$COMPONENT.log
 rm -f $LOG
 DOWNLOAD_APP_CODE(){
-
+  if ( ! -z "$APP_USER"); then
  PRINT "ADD APPLICATION USER"
   id roboshop &>> $LOG
   if [ $? -ne 0 ]; then
   useradd roboshop  &>> $LOG
+  fi
   fi
 
 PRINT "DOWNLOAD APPLICATION CODE"
@@ -29,15 +30,6 @@ rm -rf ${CONTENT} &>> $LOG
 STAT $?
 PRINT "EXTRACT THE APP CONTENT"
 unzip -o /tmp/${COMPONENT}.zip &>> $LOG
-STAT $?
-}
-SYSTEMD()
-{
-PRINT "START ${COMPONENT} SERVICE"
-systemctl restart ${COMPONENT} &>> $LOG
-STAT $?
-PRINT "ENABLE ${COMPONENT} SERVICE"
-systemctl enable ${COMPONENT} &>> $LOG
 STAT $?
 }
 SYSTEMD_CONFIG()
@@ -66,6 +58,7 @@ NODEJS()
   STAT $?
   APP_LOC=/home/roboshop
   CONTENT=${COMPONENT}
+  APP_USER=roboshop
 
   #PRINT "ADD APPLICATION USER"
   #id roboshop &>> $LOG
