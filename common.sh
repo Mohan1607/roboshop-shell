@@ -13,11 +13,12 @@ PRINT(){
 LOG=/tmp/$COMPONENT.log
 rm -f $LOG
 DOWNLOAD_APP_CODE(){
-  if ( ! -z "$APP_USER"); then
+  if ( ! -Z "$APP_USER" ); then
  PRINT "ADD APPLICATION USER"
   id roboshop &>> $LOG
   if [ $? -ne 0 ]; then
   useradd roboshop  &>> $LOG
+  STAT $?
   fi
   fi
 
