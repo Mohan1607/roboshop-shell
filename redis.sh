@@ -13,5 +13,9 @@ PRINT "CHANGE LISTEN IP OF REDIS CONF FILE"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf -e 's/127.0.0.1/0.0.0.0/' /etc/redis/redis.conf &>> $LOG
 STAT $?
 SYSTEMD
-#systemctl enable redis
-#systemctl start redis
+PRINT "ENABLE REDIS SERVICE"
+systemctl enable redis &>> $LOG
+STAT $?
+PRINT "START REDIS SERVICE"
+systemctl restart redis
+STAT $?
