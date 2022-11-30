@@ -1,5 +1,7 @@
 COMPONENT=catalogue
 APP_LOC=/home/roboshop
+CONTENT=${COMPONENT}
+APP_USER=roboshop
 source common.sh
 NODEJS
 #yum install nodejs -y

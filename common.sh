@@ -13,19 +13,18 @@ PRINT(){
 LOG=/tmp/$COMPONENT.log
 rm -f $LOG
 DOWNLOAD_APP_CODE(){
-  if [ ! -z "$APP_USER" ]; then
-  PRINT "ADD APPLICATION USER"
-  id roboshop &>> $LOG
-  if [ $? -ne 0 ]; then
-  useradd roboshop  &>> $LOG
-  STAT $?
-  fi
-  fi
-
+if [ ! -z "$APP_USER" ]; then
+PRINT "ADD APPLICATION USER"
+id roboshop &>> $LOG
+if [ $? -ne 0 ]; then
+useradd roboshop  &>> $LOG
+fi
+STAT $?
+fi
 PRINT "DOWNLOAD APPLICATION CODE"
 curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>> $LOG
 STAT $?
-PRINT "REMOVE PREVIOS VERSION OF ${COMPONENT}"
+PRINT "REMOVE PREVIUOS VERSION OF ${COMPONENT}"
 cd ${APP_LOC}
 rm -rf ${CONTENT} &>> $LOG
 STAT $?
@@ -78,11 +77,11 @@ NODEJS()
   #unzip -o /tmp/${COMPONENT}.zip &>> $LOG
   #STAT $?
   DOWNLOAD_APP_CODE
-  #mv ${COMPONENT}-main ${COMPONENT}
-  #cd ${COMPONENT}
-  #PRINT "INSTALL DEPENDENCIES"
-  #npm install &>> $LOG
-  #STAT $?
+  mv ${COMPONENT}-main ${COMPONENT}
+  cd ${COMPONENT}
+  PRINT "INSTALL DEPENDENCIES"
+  npm install &>> $LOG
+  STAT $?
   SYSTEMD_CONFIG
   #PRINT "CHANGE ENDPOINT LISTENIP"
 
