@@ -7,7 +7,6 @@ fi
 PRINT "DOWNLOADING MYSQL REPO"
 curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo &>> $LOG
 STAT $?
-
 PRINT "DISABLE MYSQL 8"
 dnf module disable mysql -y &>> $LOG
 STAT $?
