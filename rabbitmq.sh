@@ -2,7 +2,7 @@ RABBITMQ_PASSWORD=$1
 source common.sh
 if [ -z "$1" ]; then
   echo "INPUT PASSWORD NEDDED"
-  exit
+  exit 1
 fi
 PRINT "DOWNLOAD ERLANG"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash &>> $LOG
