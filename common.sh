@@ -8,6 +8,7 @@ STAT(){
   fi
 }
 PRINT(){
+  echo "-----------------------------$1---------------------------" &>>$LOG
   echo -e "\e[35m$1\e[0m"
 }
 LOG=/tmp/$COMPONENT.log
