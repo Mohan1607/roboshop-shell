@@ -1,4 +1,5 @@
 RABBITMQ_PASSWORD=$1
+source common.sh
 if [ -z "$1" ]; then
   echo "INPUT PASSWORD NEDDED"
 fi
