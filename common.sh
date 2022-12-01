@@ -83,20 +83,20 @@ SYSTEMD_CONFIG
 
 }
 PYTHON(){
-  PRINT "INSTALL PYTHON"
-  yum install python36 gcc python3-devel -y &>> $LOG
-  STAT $?
-  APP_USER=roboshop
-  APP_LOC=/home/roboshop
-  CONTENT=${COMPONENT}
-  DOWNLOAD_APP_CODE
-  mv payment-main payment
-  cd /home/roboshop/payment
-  PRINT "INSTALL DEPENDENCIES"
-  pip3 install -r requirements.txt &>> $LOG
-  STAT $?
-  exit
-  }
+PRINT "INSTALL PYTHON"
+yum install python36 gcc python3-devel -y &>> $LOG
+STAT $?
+APP_USER=roboshop
+APP_LOC=/home/roboshop
+CONTENT=${COMPONENT}
+DOWNLOAD_APP_CODE
+mv ${COMPONENT}-main ${COMPONENT}
+cd ${COMPONENT}
+PRINT "INSTALL DEPENDENCIES"
+pip3 install -r requirements.txt &>> $LOG
+STAT $?
+exit
+}
 
 
 
