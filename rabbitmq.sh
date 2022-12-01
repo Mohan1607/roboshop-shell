@@ -8,8 +8,8 @@ fi
 PRINT "DOWNLOAD ERLANG"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash &>> $LOG
 STAT $?
-PRINT "INSTALL ERLANG"
-yum install erlang -y &>> $LOG
+PRINT "Install Erlang"
+yum install erlang -y  &>>$LOG
 STAT $?
 PRINT "DOWNLOAD RABBITMQ "
 curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash &>> $LOG
