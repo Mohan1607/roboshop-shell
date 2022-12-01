@@ -35,7 +35,7 @@ STAT $?
 SYSTEMD_CONFIG()
 {
     PRINT "CHANGE ENDPOINT LISTENIP"
-    sed -i -e 's/REDIS_ENDPOINT/redis.agileworld.online/' -e 's/CATALOGUE_ENDPOINT/catalogue.agileworld.online/' -e 's/MONGO_ENDPOINT/mongo.agileworld.online/' -e 's/MONGO_DNSNAME/mongo.agileworld.online/'  /home/roboshop/${COMPONENT}/systemd.service &>> $LOG
+    sed -i -e 's/REDIS_ENDPOINT/redis.agileworld.online/' -e 's/CATALOGUE_ENDPOINT/catalogue.agileworld.online/' -e 's/MONGO_ENDPOINT/mongo.agileworld.online/' -e 's/DB_HOST/mysql.agileworld.online/' -e 's/CART_ENDPOINT/cart.agileworld.online/'  /home/roboshop/${COMPONENT}/systemd.service &>> $LOG
     STAT $?
     PRINT "CHANGE CONF FILE"
     mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service &>> $LOG
@@ -63,4 +63,23 @@ NODEJS()
   STAT $?
   SYSTEMD_CONFIG
 }
+
+JAVA(){
+PRINT "INSTALL MAVEN"
+yum install maven -y &>>$LOG
+STAT $?
+APP_LOC=/home/roboshop
+CONTENT=${COMPONENT}
+APP_USER=roboshop
+DOWNLOAD_APP_CODE
+mv ${COMPONENT}-main ${COMPONENT} &>> $LOG
+cd ${COMPONENT} &>> $LOG
+PRINT "MAVEN DEPENDENCIES"
+mvn clean package &>>${LOG}
+STAT $?
+mv target/shipping-1.0.jar shipping.jar &>> $LOG
+SYSTEMD_CONFIG
+
+}
+
 
