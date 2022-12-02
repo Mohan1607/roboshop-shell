@@ -2,7 +2,7 @@ COMPONENT=mysql
 source common.sh
 if [ -z "$1" ]; then
   echo input argument password needed
-  exit
+  exit 1
 fi
 PRINT "DOWNLOADING MYSQL REPO"
 curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo &>> $LOG
