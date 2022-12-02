@@ -6,13 +6,13 @@ if [ -z "$1" ]; then
   exit 1
 fi
 PRINT "DOWNLOAD ERLANG"
-curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash &>> $LOG
+curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh |  bash &>> $LOG
 STAT $?
 PRINT "Install Erlang"
 yum install erlang -y  &>>$LOG
 STAT $?
 PRINT "DOWNLOAD RABBITMQ "
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash &>> $LOG
+curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh |  bash &>> $LOG
 STAT $?
 PRINT "INSTALL RABBITMQ SERVICE"
 yum install rabbitmq-server -y &>> $LOG
