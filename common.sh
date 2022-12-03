@@ -36,7 +36,7 @@ STAT $?
 SYSTEMD_CONFIG()
 {
     PRINT "CHANGE ENDPOINT LISTENIP"
-    sed -i -e 's/REDIS_ENDPOINT/redis.agileworld.online/' -e 's/CATALOGUE_ENDPOINT/catalogue.agileworld.online/' -e 's/MONGO_ENDPOINT/mongo.agileworld.online/' -e 's/DB_HOST/mysql.agileworld.online/' -e 's/CART_ENDPOINT/cart.agileworld.online/'  /home/roboshop/${COMPONENT}/systemd.service &>> $LOG
+    sed -i -e 's/REDIS_ENDPOINT/redis.agileworld.online/' -e 's/CATALOGUE_ENDPOINT/catalogue.agileworld.online/' -e 's/MONGO_ENDPOINT/mongo.agileworld.online/' -e 's/DB_HOST/mysql.agileworld.online/' -e 's/CART_ENDPOINT/cart.agileworld.online/' -e  's/CART_HOST/cart.agileworld.online/' -e 's/USER_HOST/user.agileworld.online/' -e 's/AMQP_HOST/rabbitmq.agileworld.online/'   /home/roboshop/${COMPONENT}/systemd.service &>> $LOG
     STAT $?
     PRINT "CHANGE CONF FILE"
     mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service &>> $LOG
@@ -95,7 +95,11 @@ cd ${COMPONENT}
 PRINT "INSTALL DEPENDENCIES"
 pip3 install -r requirements.txt &>> $LOG
 STAT $?
-exit
+USER_ID=$(id -u roboshop)
+GROUP_ID=$(id -g roboshop)
+sed -i -e "/uid/ c uid=${USER_ID}" -e "/gid/ c gid=${GROUP_ID}" {COMPONENT}.ini
+SYSTEMD_CONFIG
+
 }
 
 
