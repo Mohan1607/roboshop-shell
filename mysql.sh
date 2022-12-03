@@ -22,7 +22,6 @@ STAT $?
 PRINT "Change Mysql Default Password"
 ROBOSHOP_MYSQL_PASSWORD=$1
 echo show databases | mysql -uroot -p${ROBOSHOP_MYSQL_PASSWORD}  &>> $LOG
-echo $?
 if [ $? -ne 0 ]
 then
 DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}') &>> $LOG
