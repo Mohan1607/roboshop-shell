@@ -1,7 +1,7 @@
 COMPONENT=dispatch
 APP_USER=roboshop
 CONTENT=${COMPONENT}
-APP_LOC=/tmp
+APP_LOC=/home/roboshop
 source common.sh
 PRINT "INSTALL GOLANG"
 yum install golang -y &>> $LOG
