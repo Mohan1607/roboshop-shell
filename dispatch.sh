@@ -1,6 +1,7 @@
 COMPONENT=dispatch
 APP_USER=roboshop
 CONTENT=${COMPONENT}
+APP_LOC=/tmp
 source common.sh
 PRINT "INSTALL GOLANG"
 yum install golang -y &>> $LOG
@@ -18,7 +19,7 @@ PRINT "COMPILE ${COMPONENT} PACKAGES"
 go build &>> $LOG
 STAT $?
 PRINT "CHANGE DISPATCH CONF FILE"
-mv /home/roboshop/dispatch/systemd.service /etc/systemd/system/dispatch.service &>> $LOG
+mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service &>> $LOG
 STAT $?
 PRINT "RELOAD THE CONF FILE"
 systemctl daemon-reload &>> $LOG
