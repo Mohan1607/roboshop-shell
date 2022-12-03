@@ -1,13 +1,13 @@
 COMPONENT=dispatch
 APP_USER=roboshop
-CONTENT={COMPONENT}
+CONTENT=${COMPONENT}
 source common.sh
 PRINT "INSTALL GOLANG"
 yum install golang -y &>> $LOG
 STAT $?
 DOWNLOAD_APP_CODE
-mv dispatch-main dispatch $>> $LOG
-cd dispatch $>> $LOG
+mv ${COMPONENT}-main ${COMPONENT} &>> $LOG
+cd ${COMPONENT} &>> $LOG
 PRINT "CREATING GO MOD FILE"
 go mod init dispatch &>> $LOG
 STAT $?
