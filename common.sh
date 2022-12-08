@@ -36,7 +36,7 @@ STAT $?
 SYSTEMD_CONFIG()
 {
     PRINT "CHANGE ENDPOINT LISTENIP"
-    sed -i -e 's/REDIS_ENDPOINT/dev-redis.agileworld.online/' -e 's/CATALOGUE_ENDPOINT/dev-catalogue.agileworld.online/' -e 's/MONGO_ENDPOINT/dev-mongodb.agileworld.online/' -e 's/MONGO_DNSNAME/dev-mongodb.agileworld.online/' -e 's/DB_HOST/dev-mysql.agileworld.online/' -e 's/CART_ENDPOINT/dev-cart.agileworld.online/' -e  's/CART_HOST/dev-cart.agileworld.online/' -e 's/USER_HOST/dev-user.agileworld.online/' -e 's/AMQP_HOST/dev-rabbitmq.agileworld.online/'   /home/roboshop/${COMPONENT}/systemd.service &>> $LOG
+    sed -i -e 's/REDIS_ENDPOINT/dev-redis.agileworld.online/' -e 's/CATALOGUE_ENDPOINT/dev-catalogue.agileworld.online/' -e 's/MONGO_ENDPOINT/dev-mongodb.agileworld.online/' -e 's/MONGO_DNSNAME/dev-mongodb.agileworld.online/' -e 's/DBHOST/dev-mysql.agileworld.online/' -e 's/CARTENDPOINT/dev-cart.agileworld.online/' -e  's/CARTHOST/dev-cart.agileworld.online/' -e 's/USERHOST/dev-user.agileworld.online/' -e 's/AMQPHOST/dev-rabbitmq.agileworld.online/'   /home/roboshop/${COMPONENT}/systemd.service &>> $LOG
     STAT $?
     PRINT "CHANGE CONF FILE"
     mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service &>> $LOG
