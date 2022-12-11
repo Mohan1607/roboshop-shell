@@ -37,6 +37,6 @@ fi
 if [ -z "$1" ]; then
   echo Input argument needed
 fi
-COMPONENT=$1
+component=$1
 COMPONENT="${env}-${component}"
 create_ec2
